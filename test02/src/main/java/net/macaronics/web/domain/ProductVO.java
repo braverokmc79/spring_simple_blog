@@ -1,4 +1,4 @@
-package net.macaronics.web;
+package net.macaronics.web.domain;
 
 public class ProductVO {
 

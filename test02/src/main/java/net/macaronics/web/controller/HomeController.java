@@ -1,4 +1,4 @@
-package net.macaronics.web;
+package net.macaronics.web.controller;
 
 import java.text.DateFormat;
 import java.util.Date;

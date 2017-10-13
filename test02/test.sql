@@ -30,6 +30,18 @@ create database simpleblog character set=utf8;
 grant all privileges on simpleblog.* to 'simpleblog'@'localhost';
 
 
+-- Mysql
+
+create table tbl_member(
+	userid varchar(100) primary key ,
+	userpw varchar(100) not null,
+	username varchar(50) not null,
+	email varchar(100),
+    regdate timestamp default now(),
+    updatedate timestamp default now()
+
+);
+
 
 
 

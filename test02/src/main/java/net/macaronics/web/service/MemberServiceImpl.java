@@ -13,7 +13,7 @@ import net.macaronics.web.persistence.MemberDAO;
 @Service
 public class MemberServiceImpl implements MemberService {
 	
-	private static final Logger log = LoggerFactory.getLogger(MemberServiceImpl.class);
+	private static final Logger logger = LoggerFactory.getLogger(MemberServiceImpl.class);
 
 	@Autowired
 	private MemberDAO dao;
@@ -58,6 +58,12 @@ public class MemberServiceImpl implements MemberService {
 		return dao.getCount();
 	}
 	
-	
+	@Override
+	public List<MemberVO> errorReadListMember() {
+		int a=1;
+		int b=a/0;
+		logger.info(" ajaxError ( )  -  {} " , b);
+		return dao.readListMember();
+	}
 
 }

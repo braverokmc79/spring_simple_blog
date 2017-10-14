@@ -19,5 +19,6 @@ public interface MemberService {
 		public void deleteMember(String userid);
 		//회원수
 		public Integer getCount();
-		
+		//에러 테스트
+		public List<MemberVO> errorReadListMember();
 }

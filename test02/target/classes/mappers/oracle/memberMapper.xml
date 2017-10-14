@@ -4,11 +4,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
-<mapper namespace="net.macaronics.mapper.memberMapper">
+<mapper namespace="net.macaronics.mapper.o.memberMapper">
   
   <!-- 	DB 시간정보 물러오기 -->
 	<select id="getTime" resultType="string">
-	  <![CDATA[ select now() ]]>
+	  <![CDATA[ select sysdate from dual]]>
 	</select>
 	
 	<!-- 	멤버 생성 -->

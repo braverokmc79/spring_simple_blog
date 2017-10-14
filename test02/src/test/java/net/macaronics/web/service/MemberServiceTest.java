@@ -1,8 +1,10 @@
-package net.macaronics.web.persistence;
+package net.macaronics.web.service;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import java.util.List;
+
+import javax.swing.Spring;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,26 +15,26 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import net.macaronics.web.domain.MemberVO;
+
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/spring/**/*.xml"})
-public class MemberDAOImplTest {
+public class MemberServiceTest {
+	
+	private static final Logger log = LoggerFactory.getLogger(MemberServiceTest.class);
 
-	private static final Logger log = LoggerFactory.getLogger(MemberDAOImplTest.class);
-	
 	@Autowired
-	private MemberDAO dao;
+	private MemberService memberService;
 	
-	Integer count=0;
+    Integer count=0;
 	
 	@Test
 	public void testGetTime() {
-		log.info("testGetTime  {} ", dao.getTime());
+		log.info("testGetTime  {} ", memberService.getTime());
 	}
 	
-
 	@Test
 	public void testCreateMember() {
-		count =dao.getCount();			
+		count =memberService.getCount();			
 		MemberVO  vo=new MemberVO();
 		
 		 if(count==0){	    	
@@ -40,20 +42,20 @@ public class MemberDAOImplTest {
 				vo.setUserpw("1111");
 				vo.setUsername("name0");
 				vo.setEmail("0@macaronics.net");
-				dao.createMember(vo);		
+				memberService.createMember(vo);		
 		}
 		++count;				  
 		vo.setUserid("user"+count);
 		vo.setUserpw("1111");
 		vo.setUsername("name"+count);
 		vo.setEmail(count+"@macaronics.net");
-		dao.createMember(vo);
+		memberService.createMember(vo);
 	}
 
 
 	@Test
 	public void testReadListMember() {
-		List<MemberVO> list =dao.readListMember();
+		List<MemberVO> list =memberService.readListMember();
 		log.info("testReadListMember - {}" , list.toString());
 	}
 
@@ -64,23 +66,23 @@ public class MemberDAOImplTest {
 		vo.setUserpw("1111");
 		vo.setUsername("2222name0");
 		vo.setEmail("update0@macaronics.net");
-		dao.updateMember(vo);
+		memberService.updateMember(vo);
 		
 	
 	}
 
 	@Test
 	public void testDeleteMember() {
-		dao.deleteMember("user0");
+		memberService.deleteMember("user0");
 	}
 
 	
 	@Test
 	public void testGetReadMember() {
-		MemberVO vo=dao.getReadMember("user1", "1111");
+		MemberVO vo=memberService.getReadMember("user1", "1111");
 		log.info("testGetReadMember - {}" , vo.toString());
 	}
 
 	
-	
+
 }

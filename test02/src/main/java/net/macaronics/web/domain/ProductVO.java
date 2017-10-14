@@ -4,20 +4,17 @@ public class ProductVO {
 
 	private String name;
 	private double price;
-	
-	
-	public ProductVO(){
-		this.name="마일드로스트";
-		this.price=5000;
+
+	public ProductVO() {
+		this.name = "마일드로스트";
+		this.price = 5000;
 	}
-	
-	public ProductVO(String name, double price){
+
+	public ProductVO(String name, double price) {
 		super();
-		this.name=name;
-		this.price=price;
+		this.name = name;
+		this.price = price;
 	}
-	
-	
 
 	public String getName() {
 		return name;
@@ -39,6 +36,5 @@ public class ProductVO {
 	public String toString() {
 		return "ProductVO [name=" + name + ", price=" + price + "]";
 	}
-	
-	
+
 }

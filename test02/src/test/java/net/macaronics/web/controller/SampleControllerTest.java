@@ -1,4 +1,4 @@
-package net.macaronics.web;
+package net.macaronics.web.controller;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -45,7 +45,48 @@ create table tbl_member(
 
 
 
+----------------------------
+----------------------------
+----------------------------  오라클
 
+--임의  폴더를 만든다. 필자는 D 드리버의 oracleDB 폴더를 생성했다.
+
+-- 콘솔창을 연다
+
+-- C:> cmd
+
+-- DBA 접속
+
+-- C:> sqlplus / as sysdba
+
+-- 테이블 스페이스 생성
+
+create tablespace simpleblog
+datafile 'D:\oracleDB/simpleblog.dbf'
+size 20m
+autoextend on
+next 10m
+maxsize unlimited;
+
+
+-- 계정 생성
+
+create user simpleblog identified by 1111 default tablespace simpleblog;
+
+-- 권한 설정
+grant connect, resource, create view to simpleblog;
+
+
+
+CREATE TABLE tbl_member
+(
+   userid       VARCHAR2 (100) PRIMARY KEY,
+   userpw       VARCHAR2 (100) NOT NULL,
+   username     VARCHAR2 (50) NOT NULL,
+   email        VARCHAR2 (100),
+   regdate      TIMESTAMP DEFAULT sysdate,
+   updatedate   TIMESTAMP DEFAULT sysdate
+);
 
 
 

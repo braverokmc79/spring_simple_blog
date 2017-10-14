@@ -17,7 +17,7 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	private static final Logger log = LoggerFactory.getLogger(MemberDAOImpl.class);
 	
-	private static final String namespace="net.macaronics.mapper.memberMapper.";
+	private static final String namespace="net.macaronics.mapper.o.memberMapper.";
 	
 	@Autowired
 	private SqlSession sqlSession;

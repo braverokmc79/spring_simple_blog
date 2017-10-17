@@ -24,7 +24,8 @@ public class CommonException {
 		
 	@ExceptionHandler(Exception.class)
 	public String commonErrorMessage(Exception e) {
-		logger.error("@ExceptionHandler(Exception.class) --  {}", errorMessge(e.getStackTrace()));
+		logger.error("commonErrorMessage() , {}" , e.getMessage());	
+		logger.error("@ExceptionHandler(Exception.class) --  {}", errorMessge(e.getStackTrace(), e.getMessage()));
 		return DEFAULT_ERROR_VIEW;
 	}
 
@@ -34,7 +35,8 @@ public class CommonException {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.setViewName(DEFAULT_ERROR_VIEW);
 		modelAndView.addObject("exception", e);
-		logger.error("@ExceptionHandler(RuntimeException.class) --  {}", errorMessge(e.getStackTrace()));
+		logger.error("handleRuntimeExceptionErrorMessage() , {}" , e.getMessage());	
+		logger.error("@ExceptionHandler(RuntimeException.class) --  {}", errorMessge(e.getStackTrace(), e.getMessage()));
 		
 		return modelAndView;
 	}
@@ -49,7 +51,7 @@ public class CommonException {
 			logger.error(" @ResponseBody 에서 일어난 에러");	
 		}
 		
-		logger.error("methodAnnotation() , {}" , errorMessge(e.getStackTrace()));	
+		logger.error("methodAnnotation() , {}" , errorMessge(e.getStackTrace(), e.getMessage()));	
 		ModelAndView modelAndView =new ModelAndView();
 		modelAndView.setViewName(DEFAULT_ERROR_VIEW);
 		modelAndView.addObject("exception", e);
@@ -58,11 +60,11 @@ public class CommonException {
 	}
 
 	
-	private String errorMessge(StackTraceElement[] stes){
+	private String errorMessge(StackTraceElement[] stes, String message){
 		StringBuffer buffer =new StringBuffer();
 		buffer.append("\n\n");
 		buffer.append("★ ★ ★     에러 메시지 시작 ★★★  \n\n");
-		
+		buffer.append("getMessage() : " +message + "\n\n");	
 		for(int i=0; i<stes.length; i++){
 			if(i==0){
 				buffer.append("★ 에러 시작 클래스 이름 className : " + stes[i].getClassName()+"\n" ); 						

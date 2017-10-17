@@ -14,65 +14,59 @@ import net.macaronics.web.domain.MemberVO;
 
 @Repository
 public class MemberDAOImpl implements MemberDAO {
-	
+
 	private static final Logger log = LoggerFactory.getLogger(MemberDAOImpl.class);
-	
-	private static final String namespace="net.macaronics.mapper.o.memberMapper.";
-	
+
+	// private static final String
+	// namespace="net.macaronics.mapper.o.memberMapper.";
+	private static final String namespace = "net.macaronics.mapper.memberMapper.";
+
 	@Autowired
 	private SqlSession sqlSession;
-	
-	//DB 시간정보 물러오기
+
+	// DB 시간정보 물러오기
 	@Override
-	public String getTime() {	
-		return sqlSession.selectOne(namespace+"getTime");
+	public String getTime() {
+		return sqlSession.selectOne(namespace + "getTime");
 	}
 
-	//멤버 생성
+	// 멤버 생성
 	@Override
 	public void createMember(MemberVO vo) {
-		sqlSession.insert(namespace+"createMember", vo);
+		sqlSession.insert(namespace + "createMember", vo);
 	}
-	
-	
-	//회원 한명 정보 불러오기 
+
+	// 회원 한명 정보 불러오기
 	@Override
 	public MemberVO getReadMember(String userid, String userpw) {
-		Map<String, Object> map=new HashMap<>();
+		Map<String, Object> map = new HashMap<>();
 		map.put("userid", userid);
 		map.put("userpw", userpw);
-		return sqlSession.selectOne(namespace+"getReadMember", map);
+		return sqlSession.selectOne(namespace + "getReadMember", map);
 	}
-	
-	
-	//회원 목록 출력
+
+	// 회원 목록 출력
 	@Override
 	public List<MemberVO> readListMember() {
-		return sqlSession.selectList(namespace+"readListMember");
+		return sqlSession.selectList(namespace + "readListMember");
 	}
-	
-	
-	//회원 업데이트
+
+	// 회원 업데이트
 	@Override
 	public void updateMember(MemberVO vo) {
-		sqlSession.update(namespace+"updateMember", vo);
+		sqlSession.update(namespace + "updateMember", vo);
 	}
-	
-	
-	//회원 삭제
+
+	// 회원 삭제
 	@Override
 	public void deleteMember(String userid) {
-		sqlSession.delete(namespace+"deleteMember", userid);
+		sqlSession.delete(namespace + "deleteMember", userid);
 	}
 
-	
-	//회원수
+	// 회원수
 	@Override
 	public Integer getCount() {
-	  return sqlSession.selectOne(namespace+"getCount");
+		return sqlSession.selectOne(namespace + "getCount");
 	}
-
-	
-	
 
 }

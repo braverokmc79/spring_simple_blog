@@ -43,6 +43,7 @@ public class SampleController {
 	
 	@RequestMapping("doC")
 	public String doC(@ModelAttribute("msg" ) String msg, String msg2 )  throws Exception{
+		logger.info("doC called ............ msg - {}", msg);
 		if(msg==null){
 			logger.info(" msg - null");
 		}else{
@@ -51,17 +52,14 @@ public class SampleController {
 		if(msg.equals("")) logger.info("msg : '''''");
 		logger.info(" msg2 :  {} " , msg2);
 		
-		logger.info("doC called ............ msg - {}", msg);
 		return "result";
 	}
 	
 	
 	@RequestMapping("/doD")
 	public String doD(Model model)  throws Exception{
-		
-		ProductVO product=new ProductVO("Sample Product", 1000);
-		
 		logger.info("doD");
+		ProductVO product=new ProductVO("Sample Product", 1000);
 		
 		model.addAttribute(product);
 		

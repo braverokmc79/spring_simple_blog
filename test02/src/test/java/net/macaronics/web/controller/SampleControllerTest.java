@@ -41,7 +41,11 @@ public class SampleControllerTest {
 		mockMvc.perform(MockMvcRequestBuilders.get("/doJSON"));
 	}
 	
-	
+	@Test
+	public void testDoC() throws Exception{
+		
+		mockMvc.perform(MockMvcRequestBuilders.get("/doC"));
+	}
 	
 }
 

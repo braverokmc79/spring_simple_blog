@@ -28,12 +28,12 @@ public class MemberServiceTest {
     Integer count=0;
 	
 	@Test
-	public void testGetTime() {
+	public void testGetTime() throws Exception  {
 		log.info("testGetTime  {} ", memberService.getTime());
 	}
 	
 	@Test
-	public void testCreateMember() {
+	public void testCreateMember() throws Exception {
 		count =memberService.getCount();			
 		MemberVO  vo=new MemberVO();
 		
@@ -54,13 +54,13 @@ public class MemberServiceTest {
 
 
 	@Test
-	public void testReadListMember() {
+	public void testReadListMember() throws Exception {
 		List<MemberVO> list =memberService.readListMember();
 		log.info("testReadListMember - {}" , list.toString());
 	}
 
 	@Test
-	public void testUpdateMember() {
+	public void testUpdateMember() throws Exception  {
 		MemberVO  vo =new MemberVO();
 		vo.setUserid("user0");
 		vo.setUserpw("1111");
@@ -72,17 +72,22 @@ public class MemberServiceTest {
 	}
 
 	@Test
-	public void testDeleteMember() {
+	public void testDeleteMember() throws Exception {
 		memberService.deleteMember("user0");
 	}
 
 	
 	@Test
-	public void testGetReadMember() {
+	public void testGetReadMember() throws Exception {
 		MemberVO vo=memberService.getReadMember("user1", "1111");
 		log.info("testGetReadMember - {}" , vo.toString());
 	}
 
 	
+	//@Test
+	public void errorReadListMemberTest() throws Exception{
+		memberService.errorReadListMember();
+	}
 
+	
 }

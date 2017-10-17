@@ -90,3 +90,41 @@ CREATE TABLE tbl_member
 
 
 
+-------
+-----
+-----  MY SQL
+
+
+
+
+
+create table tbl_message(
+	
+	mid int not null auto_increment,
+	targetid varchar(50) not null,
+	sender varchar(50) not null,
+	message text not null,
+	opendate timestamp,
+	senddate timestamp not null default now(),
+	primary key(mid)
+
+);
+
+
+--  tbl_member 포인트 컬럼 추가
+alter table tbl_member add COLUMN ( upoint int not null default 0);
+
+
+
+alter table tbl_message add CONSTRAINT fk_usertarget
+foreign key (targetid) REFERENCES  tbl_member (userid);
+
+
+alter table tbl_message add constraint fk_usersender
+foreign key (sender) REFERENCES  tbl_member(userid);
+
+
+
+
+
+

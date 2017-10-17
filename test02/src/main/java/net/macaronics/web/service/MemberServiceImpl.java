@@ -20,29 +20,29 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	@Override
-	public String getTime() {
+	public String getTime() throws Exception{
 		return dao.getTime();
 	}
 
 	@Override
-	public void createMember(MemberVO vo) {
+	public void createMember(MemberVO vo) throws Exception{
 		dao.createMember(vo);
 	}
 
 	
 	@Override
-	public MemberVO getReadMember(String userid, String userpw){ 
+	public MemberVO getReadMember(String userid, String userpw) throws Exception{ 
 		return dao.getReadMember(userid, userpw);
 	}
 
 	@Override
-	public List<MemberVO> readListMember() {
+	public List<MemberVO> readListMember() throws Exception {
 	
 		return dao.readListMember();
 	}
 
 	@Override
-	public void updateMember(MemberVO vo) {
+	public void updateMember(MemberVO vo) throws Exception{
 		dao.updateMember(vo);
 
 	}
@@ -54,12 +54,12 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Integer getCount() {
+	public Integer getCount() throws Exception {
 		return dao.getCount();
 	}
 	
 	@Override
-	public List<MemberVO> errorReadListMember() {
+	public List<MemberVO> errorReadListMember() throws Exception {
 		int a=1;
 		int b=a/0;
 		logger.info(" ajaxError ( )  -  {} " , b);

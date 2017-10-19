@@ -55,8 +55,8 @@ public class MemberServiceTest {
 
 	@Test
 	public void testReadListMember() throws Exception {
-		List<MemberVO> list =memberService.readListMember();
-		log.info("testReadListMember - {}" , list.toString());
+		//List<MemberVO> list =memberService.readListMember(1);
+		//log.info("testReadListMember - {}" , list.toString());
 	}
 
 	@Test

@@ -125,6 +125,33 @@ foreign key (sender) REFERENCES  tbl_member(userid);
 
 
 
+--  mysql 자가 복제
+
+INSERT INTO tbl_board ( title, content, writer) ( SELECT title, content, writer FROM tbl_board ); 
+
+
+-- 페이징 처리를 위해 다음과 같이 변경한다.
+
+create table tbl_member(
+	mid int  AUTO_INCREMENT primary key ,
+	userid varchar(100)  ,
+	userpw varchar(100) not null,
+	username varchar(50) not null,
+	email varchar(100)
+   
+
+);
+
+-- 더미데이터를 삽입 한다.
+
+-- 컬럼을 변경한다.
+
+alter table tbl_member add COLUMN  regdate timestamp default now();
+
+alter table tbl_member add COLUMN  updatedate timestamp default now();
+
+--  tbl_member 포인트 컬럼 추가
+alter table tbl_member add COLUMN ( upoint int not null default 0);
 
 
 

@@ -11,7 +11,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
+import config.paging.PageMaker;
 import net.macaronics.web.domain.MemberVO;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/spring/**/*.xml"})
@@ -24,14 +27,14 @@ public class MemberDAOImplTest {
 	
 	Integer count=0;
 	
-	@Test
-	public void testGetTime() {
+	//@Test
+	public void testGetTime() throws Exception{
 		log.info("testGetTime  {} ", dao.getTime());
 	}
 	
 
-	@Test
-	public void testCreateMember() {
+	//@Test
+	public void testCreateMember() throws Exception {
 		count =dao.getCount();			
 		MemberVO  vo=new MemberVO();
 		
@@ -51,14 +54,22 @@ public class MemberDAOImplTest {
 	}
 
 
-	@Test
-	public void testReadListMember() {
-		List<MemberVO> list =dao.readListMember();
-		log.info("testReadListMember - {}" , list.toString());
+	//@Test
+	public void testReadListMember() throws Exception{
+		PageMaker pageMaker =new PageMaker();
+		pageMaker.setPage(2);
+		pageMaker.setPerPageNum(20);
+		
+		List<MemberVO> list =dao.readListMember(pageMaker);
+		for(MemberVO member : list){
+			log.info("testReadListMember - {},  {}" ,  member.getMid() ,member.getUserid());
+		}
+		
 	}
 
-	@Test
-	public void testUpdateMember() {
+	
+	//@Test
+	public void testUpdateMember() throws Exception{
 		MemberVO  vo =new MemberVO();
 		vo.setUserid("user0");
 		vo.setUserpw("1111");
@@ -69,18 +80,52 @@ public class MemberDAOImplTest {
 	
 	}
 
-	@Test
-	public void testDeleteMember() {
+	//@Test
+	public void testDeleteMember() throws Exception{
 		dao.deleteMember("user0");
 	}
 
 	
-	@Test
-	public void testGetReadMember() {
+	//@Test
+	public void testGetReadMember() throws Exception{
 		MemberVO vo=dao.getReadMember("user1", "1111");
 		log.info("testGetReadMember - {}" , vo.toString());
 	}
 
 	
+	@Test
+	public void testURI() throws Exception{
+		UriComponents uriComponents=
+				UriComponentsBuilder.newInstance()
+				.path("/board/read")
+				.queryParam("bno", 12)
+				.queryParam("perPageNum", 20)
+				.build();
+		log.info("/board/read?bno=12&perPageNum=20");
+		log.info(uriComponents.toString());
+	}
+	
+	
+	@Test
+	public void testURI2() throws Exception{
+		
+		UriComponents uriComponents=
+				UriComponentsBuilder.newInstance()
+				.path("/{module}/{page}")
+				.queryParam("bno", 12)
+				.queryParam("perPageNum", 20)
+				.build()
+				.expand("board", "read")
+				.encode();
+		log.info("/board/read?bno=12&perPageNum=20");
+		log.info(uriComponents.toString());
+	}
+	
+	
+	
 	
 }
+
+
+
+

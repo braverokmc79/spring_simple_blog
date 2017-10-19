@@ -14,9 +14,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import config.paging.PageMaker;
+import config.paging.PageMakerAndSearch;
 import net.macaronics.web.domain.MemberVO;
 import net.macaronics.web.domain.ProductVO;
 import net.macaronics.web.service.MemberService;
@@ -129,12 +132,39 @@ public class SampleController {
 	@RequestMapping("/memberList")
 	public String errorReadListMember() throws Exception{
 		logger.info(" errorReadListMember() " ); 
-		List<MemberVO> list =service.errorReadListMember();
+		Integer list =service.errorReadListMember();
 		
 		return "home";
 	}
 	
 	
+	
+	//페이징 테스트
+	@RequestMapping(value="/memberList", method=RequestMethod.GET)
+	public String listMemberPage(PageMaker pageMaker, Model model) throws Exception{	
+	
+		//전체 페이지 개수 구한후 하단 페이징 처리 하기
+		pageMaker.setTotalCount(1000);
+		//페이지 메이커 attribute 로 저장  
+		model.addAttribute("pageMaker", pageMaker);
+		model.addAttribute("list", service.readListMember(pageMaker));
+		
+		return "test/memberList";
+	}
+	
+	
+	//페이징 and Search 
+	@RequestMapping(value="/memberListSearch", method=RequestMethod.GET)
+	public String listPageSearch(@ModelAttribute("pageMaker") PageMakerAndSearch pageMaker, Model model) throws Exception{
+		
+		//전체 페이지 개수 구한후 하단 페이징 처리 하기
+		pageMaker.setTotalCount(service.listPageCount(pageMaker));
+		//페이지 메이커 attribute 로 저장  
+		model.addAttribute("pageMaker", pageMaker);	
+		model.addAttribute("list", service.listPageSearch(pageMaker));
+		
+		return "test/memberList";
+	}
 	
 	
 }

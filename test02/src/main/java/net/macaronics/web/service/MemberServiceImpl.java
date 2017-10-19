@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import config.paging.PageMaker;
+import config.paging.PageMakerAndSearch;
 import net.macaronics.web.domain.MemberVO;
 import net.macaronics.web.persistence.MemberDAO;
 
@@ -36,11 +38,13 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<MemberVO> readListMember() throws Exception {
-	
-		return dao.readListMember();
+	public List<MemberVO> readListMember(PageMaker pageMaker) throws Exception {
+		
+		return dao.readListMember(pageMaker);
 	}
 
+	
+	
 	@Override
 	public void updateMember(MemberVO vo) throws Exception{
 		dao.updateMember(vo);
@@ -48,7 +52,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void deleteMember(String userid) {
+	public void deleteMember(String userid) throws Exception {
 		dao.deleteMember(userid);
 
 	}
@@ -59,11 +63,26 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public List<MemberVO> errorReadListMember() throws Exception {
+	public Integer errorReadListMember() throws Exception {
 		int a=1;
 		int b=a/0;
 		logger.info(" ajaxError ( )  -  {} " , b);
-		return dao.readListMember();
+		return dao.getCount();
 	}
+
+	
+	//회원 목록 출력 페이징 처리 및 검색처리
+	@Override
+	public List<MemberVO> listPageSearch(PageMakerAndSearch pmas) throws Exception{
+		return dao.listPageSearch(pmas);
+	}
+
+	@Override
+	public int listPageCount(PageMakerAndSearch pageMaker) throws Exception {
+		
+		return dao.listPageCount(pageMaker);
+	}
+	
+	
 
 }

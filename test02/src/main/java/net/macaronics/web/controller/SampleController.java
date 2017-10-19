@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import config.paging.PageMaker;
 import config.paging.PageMakerAndSearch;
+import config.paging.oracle.OraclePageMakerAndSearch;
 import net.macaronics.web.domain.MemberVO;
 import net.macaronics.web.domain.ProductVO;
 import net.macaronics.web.service.MemberService;
@@ -165,6 +166,23 @@ public class SampleController {
 		
 		return "test/memberList";
 	}
+	
+	
+	
+	//페이징 and Search 
+	@RequestMapping(value="/oracleMemberListSearch", method=RequestMethod.GET)
+	public String oracleListPageSearch(@ModelAttribute("pageMaker") OraclePageMakerAndSearch pageMaker, Model model) throws Exception{
+		
+		//전체 페이지 개수 구한후 하단 페이징 처리 하기
+		pageMaker.setTotPage(service.oralcleLlistPageCount(pageMaker));
+		//페이지 메이커 attribute 로 저장  
+		
+		model.addAttribute("pageMaker", pageMaker);	
+		model.addAttribute("list", service.oralcleListPageSearch(pageMaker));
+		
+		return "test/oracleMemberList";
+	}
+	
 	
 	
 }

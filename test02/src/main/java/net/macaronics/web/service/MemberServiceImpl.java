@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import config.paging.PageMaker;
 import config.paging.PageMakerAndSearch;
+import config.paging.oracle.OraclePageMakerAndSearch;
 import net.macaronics.web.domain.MemberVO;
 import net.macaronics.web.persistence.MemberDAO;
 
@@ -81,6 +82,20 @@ public class MemberServiceImpl implements MemberService {
 	public int listPageCount(PageMakerAndSearch pageMaker) throws Exception {
 		
 		return dao.listPageCount(pageMaker);
+	}
+
+	
+	
+	//  오라클 회원 목록 출력 페이징 처리 및 검색처리
+	@Override
+	public List<MemberVO> oralcleListPageSearch(OraclePageMakerAndSearch pmas) throws Exception {
+		return dao.oralcleListPageSearch(pmas);
+	}
+
+    //  오라클 회원 목록 출력 페이징 처리 및 검색처리
+	@Override
+	public int oralcleLlistPageCount(OraclePageMakerAndSearch pageMaker) throws Exception {
+		return dao.oralcleLlistPageCount(pageMaker);
 	}
 	
 	

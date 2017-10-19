@@ -17,7 +17,7 @@ public class SampleAdvice {
 
 	private static final Logger logger =LoggerFactory.getLogger(SampleAdvice.class);
 	
-	@Before("execution( * test.service.MessageService*.*(..))")
+	//@Before("execution( * test.service.MessageService*.*(..))")
 	public void startLog() throws Throwable{
 		logger.info("----------------");
 		logger.info("-----------------");
@@ -26,8 +26,8 @@ public class SampleAdvice {
 	
 	
 	
-	@Around("execution( * test.service.MessageService*.*(..))"
-			+ " or execution( * test.persistence.*.*(..))")
+	//@Around("execution( * test.service.MessageService*.*(..))"
+	//		+ " or execution( * test.persistence.*.*(..))")
 	public Object timeLog(ProceedingJoinPoint pjp) throws Throwable{
 		long startTime =System.currentTimeMillis();
 		logger.info(Arrays.toString(pjp.getArgs()));

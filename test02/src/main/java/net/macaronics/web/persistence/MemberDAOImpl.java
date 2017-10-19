@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import config.paging.PageMaker;
 import config.paging.PageMakerAndSearch;
+import config.paging.oracle.OraclePageMakerAndSearch;
 import net.macaronics.web.domain.MemberVO;
 
 @Repository
@@ -19,9 +20,8 @@ public class MemberDAOImpl implements MemberDAO {
 
 	private static final Logger log = LoggerFactory.getLogger(MemberDAOImpl.class);
 
-	// private static final String
-	// namespace="net.macaronics.mapper.o.memberMapper.";
-	private static final String namespace = "net.macaronics.mapper.memberMapper.";
+	private static final String namespace="net.macaronics.mapper.o.memberMapper.";
+	//private static final String namespace = "net.macaronics.mapper.memberMapper.";
 
 	@Autowired
 	private SqlSession sqlSession;
@@ -83,6 +83,18 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public Integer listPageCount(PageMakerAndSearch pageMaker) throws Exception {
 		
+		return sqlSession.selectOne(namespace +"listPageCount", pageMaker);
+	}
+
+
+	//오라클 회원 목록 출력 페이징 처리 및 검색처리
+	@Override
+	public List<MemberVO> oralcleListPageSearch(OraclePageMakerAndSearch pmas) throws Exception {
+		return sqlSession.selectList(namespace + "listPageSearch", pmas);
+	}
+	//오라클 회원 목록 출력 페이징 처리 및 검색처리
+	@Override
+	public int oralcleLlistPageCount(OraclePageMakerAndSearch pageMaker) throws Exception {
 		return sqlSession.selectOne(namespace +"listPageCount", pageMaker);
 	}
 	

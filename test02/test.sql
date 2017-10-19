@@ -47,7 +47,7 @@ create table tbl_member(
 
 ----------------------------
 ----------------------------
-----------------------------  오라클
+----------------------------  오라클 Oracle
 
 --임의  폴더를 만든다. 필자는 D 드리버의 oracleDB 폴더를 생성했다.
 
@@ -78,16 +78,19 @@ grant connect, resource, create view to simpleblog;
 
 
 
-CREATE TABLE tbl_member
-(
-   userid       VARCHAR2 (100) PRIMARY KEY,
-   userpw       VARCHAR2 (100) NOT NULL,
-   username     VARCHAR2 (50) NOT NULL,
-   email        VARCHAR2 (100),
-   regdate      TIMESTAMP DEFAULT sysdate,
-   updatedate   TIMESTAMP DEFAULT sysdate
-);
+create TABLE TBL_MEMBER(
 
+	mid  NUMBER PRIMARY KEY, 
+	userid VARCHAR2(100),
+	userpw VARCHAR2 (100) NOT NULL,
+	username VARCHAR2 (50) NOT NULL,
+	email VARCHAR2 (100),
+	upoint NUMBER DEFAULT 0,
+	regdate TIMESTAMP DEFAULT sysdate,
+	updatedate TIMESTAMP DEFAULT sysdate  
+
+)NOCACHE
+LOGGING;
 
 
 -------

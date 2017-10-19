@@ -4,6 +4,7 @@ import java.util.List;
 
 import config.paging.PageMaker;
 import config.paging.PageMakerAndSearch;
+import config.paging.oracle.OraclePageMakerAndSearch;
 import net.macaronics.web.domain.MemberVO;
 
 public interface MemberDAO {  
@@ -24,8 +25,14 @@ public interface MemberDAO {
 	
 	
 	//회원 목록 출력 페이징 처리 및 검색처리
-	public List<MemberVO> listPageSearch(PageMakerAndSearch pmas) throws Exception;;
+	public List<MemberVO> listPageSearch(PageMakerAndSearch pmas) throws Exception;
 	public Integer listPageCount(PageMakerAndSearch pageMaker) throws Exception;
+	
+
+	
+	//  오라클 회원 목록 출력 페이징 처리 및 검색처
+	public List<MemberVO> oralcleListPageSearch(OraclePageMakerAndSearch pmas)throws Exception;
+	public int oralcleLlistPageCount(OraclePageMakerAndSearch pageMaker)throws Exception;
 	
 	
 	

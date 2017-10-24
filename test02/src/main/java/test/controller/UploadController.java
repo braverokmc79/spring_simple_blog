@@ -1,3 +1,13 @@
+/**
+* <pre>
+* 1. 패키지명 : net.macaronics.web.controller
+* 2. 타입명 : test2.java
+* 3. 작성일 : 2017. 10. 24. 오후 7:40:39
+* 4. 저자 : 최준호
+* 
+* </pre>
+*
+*/
 package test.controller;
 
 import java.io.File;
@@ -22,10 +32,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import config.uploadfile.MediaUtils;
-import config.uploadfile.UploadFileDisplay;
-import config.uploadfile.UploadFileUtils;
-import config.uploadfile.UploadSecurity;
+import config.upload.MediaUtils;
+import config.upload.UploadFileDisplay;
+import config.upload.UploadFileUtils;
+import config.upload.UploadSecurity;
 
 @Controller
 public class UploadController {

@@ -36,7 +36,7 @@
 	<context:component-scan base-package="config/error" /> <!-- 에러처리 -->
 	<context:component-scan base-package="config/aop"/> <!-- aop 처리 -->
 	<context:component-scan base-package="test.*"/>
-	<context:component-scan base-package="config.uploadfile" />
+	<context:component-scan base-package="config.upload" />
 	
 	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 	  <beans:property name="maxUploadSize"   value="10485760" />

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 다른 mapper와 중복되지 않도록 네임스페이스 기재 -->
+<mapper namespace="net.macaronics.mapper.o.memberMapper">
+  
+  <!-- 	DB 시간정보 물러오기 -->
+	<select id="getTime" resultType="string">
+	  <![CDATA[ select sysdate from dual]]>
+	</select>
+	
+	<!-- 	멤버 생성 -->
+	<insert id="createMember">
+	insert INTO TBL_MEMBER (userid, userpw, username, email) 
+
+		  values (#{userid}, #{userpw}, #{username}, #{email} )
+	</insert>
+	
+	<!-- 	회원 한명 정보 불러오기  -->
+	<select id="getReadMember" resultType="net.macaronics.web.domain.MemberVO">
+		select * from TBL_MEMBER where userid=#{userid} and userpw=#{userpw}
+	</select>
+	
+	<!-- 	회원 목록 출력 -->
+	<select id="readListMember" resultType="net.macaronics.web.domain.MemberVO">
+		select * from TBL_MEMBER 
+	</select>
+	
+	<!-- 	회원 업데이트 -->
+	<update id="updateMember">
+	    update TBL_MEMBER SET  userpw=#{userpw}, email=#{email}, username=#{username} where userid=#{userid}
+	</update>
+	
+	
+	<!-- 	회원 삭제 -->
+	<delete id="deleteMember">
+	  delete from TBL_MEMBER WHERE  userid=#{userid}
+	</delete>
+	
+	
+	<select id="getCount" resultType="int">
+		select count(*) from TBL_MEMBER
+	</select> 
+	
+	
+	
+	
+	
+	
+	
+<sql id="search">
+	<if test="searchType !=null">
+	        <if test="searchType == 'userid'.toString()">
+				and userid like '%' || #{keyword} || '%'
+			</if>
+	
+			<if test="searchType == 'username'.toString()">
+				and username like '%' || #{keyword} || '%'
+			</if>
+	
+			<if test="searchType == 'email'.toString()">
+				and email like  '%' || #{keyword} || '%'
+			</if>
+			
+			<if test="searchType == 'all'.toString()">
+				and ( 
+					 userid like '%' || #{keyword} || '%'  
+					OR
+					 username like '%' ||  #{keyword} || '%'
+					OR
+					 email like '%' || #{keyword} || '%'
+				)
+			</if>
+		    
+	</if>
+</sql>
+
+
+	<!-- 회원 목록 출력 페이징 처리 및 검색처리 -->
+	<select id="listPageSearch" resultType="net.macaronics.web.domain.MemberVO">		
+		<![CDATA[	
+		 
+		 	select * from 
+			 (
+			  select  rownum as rn , A.* from
+			  
+			 ( select * from tbl_member
+			   order by mid desc
+			   ) A 
+			   
+			  )  where rn BETWEEN  #{pageBegin} and #{pageEnd}
+		 
+		]]>
+		
+		<include refid="search" />
+	</select>
+
+
+	<select id="listPageCount" resultType="int">		
+		<![CDATA[
+			select count(mid) from TBL_MEMBER where mid >0 
+			
+		]]>
+		<include  refid="search"  />
+	</select>
+	
+	
+	
+</mapper>

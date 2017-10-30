@@ -97,6 +97,16 @@ public class MemberServiceImpl implements MemberService {
 	public int oralcleLlistPageCount(OraclePageMakerAndSearch pageMaker) throws Exception {
 		return dao.oralcleLlistPageCount(pageMaker);
 	}
+
+	/* (아이디 중복 체크)
+	 * @see net.macaronics.web.service.MemberService#idCheck()
+	 */
+	@Override
+	public boolean idCheck(String userid) throws Exception {
+	    Integer  num =dao.idCheck(userid);
+		//0보다 크면 중복 으로 true 리턴  
+		return num > 0 ? true: false; 
+	}
 	
 	
 

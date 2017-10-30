@@ -12,8 +12,6 @@ package test.domain;
 
 import java.util.Date;
 
-import com.nhncorp.lucy.security.xss.XssPreventer;
-
 public class MessageVO {
 
 	private Integer mid;

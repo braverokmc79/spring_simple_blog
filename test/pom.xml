@@ -118,6 +118,7 @@
 			<version>1.2</version>
 		</dependency>
 
+
 		<!-- https://mvnrepository.com/artifact/junit/junit -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -250,13 +251,21 @@
 			<artifactId>lucy-xss</artifactId>
 			<version>1.6.3</version>
 		</dependency>
-		
+
 		<!-- lucy-xss-servlet -->
 		<dependency>
 			<groupId>com.navercorp.lucy</groupId>
 			<artifactId>lucy-xss-servlet</artifactId>
 			<version>2.0.0</version>
 		</dependency>
+
+		<!-- JSR-303 Bean Validation -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>5.2.2.Final</version>
+		</dependency>
+
 
 
 

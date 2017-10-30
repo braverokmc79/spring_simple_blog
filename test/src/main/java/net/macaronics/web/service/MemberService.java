@@ -37,7 +37,10 @@ public interface MemberService {
 		//오라클 회원 목록 출력 페이징 처리 및 검색처리
 		public List<MemberVO> oralcleListPageSearch(OraclePageMakerAndSearch pmas) throws Exception;;
 		
-		public int oralcleLlistPageCount(OraclePageMakerAndSearch pageMaker) throws Exception;;
+		public int oralcleLlistPageCount(OraclePageMakerAndSearch pageMaker) throws Exception;
+		
+		//아이디 중복 체크
+		public boolean idCheck(String userid) throws Exception;
 		
 		
 }

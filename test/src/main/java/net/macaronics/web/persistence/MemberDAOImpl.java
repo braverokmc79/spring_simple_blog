@@ -20,8 +20,8 @@ public class MemberDAOImpl implements MemberDAO {
 
 	private static final Logger log = LoggerFactory.getLogger(MemberDAOImpl.class);
 
-	private static final String namespace="net.macaronics.mapper.o.memberMapper.";
-	//private static final String namespace = "net.macaronics.mapper.memberMapper.";
+	//private static final String namespace="net.macaronics.mapper.o.memberMapper.";
+	private static final String namespace = "net.macaronics.mapper.memberMapper.";
 
 	@Autowired
 	private SqlSession sqlSession;
@@ -96,6 +96,15 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public int oralcleLlistPageCount(OraclePageMakerAndSearch pageMaker) throws Exception {
 		return sqlSession.selectOne(namespace +"listPageCount", pageMaker);
+	}
+
+
+	
+	//아이디 중복 체크
+	@Override
+	public Integer idCheck(String userid) throws Exception {
+			
+		return sqlSession.selectOne(namespace+"idCheck",userid);
 	}
 	
 	

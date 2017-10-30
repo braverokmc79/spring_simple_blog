@@ -115,7 +115,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 
 
+	<!-- 아이디 중복 체크 -->
+	<select id="idCheck" resultType="int">
+	<![CDATA[ 
+		select count(TBL_MEMBER.userid) from TBL_MEMBER WHERE userid=#{userid}
+	]]>
+	</select>
 
 
 
+	
 </mapper>
+

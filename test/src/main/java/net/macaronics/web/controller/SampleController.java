@@ -26,6 +26,7 @@ import net.macaronics.web.domain.ProductVO;
 import net.macaronics.web.service.MemberService;
 
 @Controller
+@RequestMapping("sample/*")
 public class SampleController {
 
 	private static final Logger logger =LoggerFactory.getLogger(SampleController.class);

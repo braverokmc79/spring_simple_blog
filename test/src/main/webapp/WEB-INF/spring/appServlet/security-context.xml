@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd 
+	http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context.xsd 
+	http://www.springframework.org/schema/security 
+	http://www.springframework.org/schema/security/spring-security.xsd ">
+<!--
+ 	<http>
+		<intercept-url pattern="/login" access="hasRole('USER')" />
+		<form-login />
+		<logout logout-url="/logout" />
+	</http> 
+	
+		
+	<authentication-manager>
+		<authentication-provider>
+			<user-service>
+				<user name="user" password="password" authorities="ROLE_USER" />
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>
+ 
+-->
+
+
+<!-- access="permitAll" - 로그인 하지 않아도 접근 permitAll 항상 true로 평가 됩니다. -->
+<!-- /admin/**  access="hasRole('ADMIN')" URL 은 ADMIN 권한이 있어야 접근할 수 있도록 합니다. -->
+
+<!-- hasAnyRole([role1,role2])
+현재 로그인된 사용자가 콤마(,)로 분리하여 주어진
+ role들 중 하나라도 가지고 있으면 true를 반환합니다. 
+ 제공된 role이 'ROLE_'로 시작하지 않으면 기본적으로 'ROLE_'를 추가합니다. 
+ 이것은 DefaultWebSecurityExpressionHandler에서 defaultRolePrefix를 수정하여 커스터마이즈할 수 있습니다.
+ -->
+
+
+<!-- 
+<logout> 요소를 커스터마이징 합니다.
+
+  + logout-url="/logout" : 로그아웃에 사용될 페이지를 지정합니다. 기본값은 "/logout" 입니다.
+
+  + logout-success-url="/home.do" : 로그아웃에 성공하였을 때 이동할 페이지를 지정합니다.
+  
+  
+ -->
+	<!-- 검사 URL -->
+	<http use-expressions="true">
+		<intercept-url pattern="/sample/**" access="permitAll"/>	
+		<intercept-url pattern="/login/loginForm.do" access="permitAll"/>  	
+		<intercept-url pattern="/admin/**" access="hasRole('ADMIN')"/> 
+		<intercept-url pattern="/login" access="hasRole('USER')" />
+		<intercept-url pattern="/" access="permitAll"/>
+		<intercept-url pattern="/user/**" access="hasAnyRole('USER, ADMIN')" />
+		
+		<form-login login-page="/login/loginForm.do" 
+					default-target-url="/"
+					authentication-failure-url="/login/loginForm.do?error"
+					username-parameter="id"
+					password-parameter="password"	
+		/>		
+		<logout logout-url="/logout"    
+				logout-success-url="/" />
+		<access-denied-handler error-page="/login/accessDenied.do"/>			
+	</http>
+	    
+    <!--  provider  -->
+    <authentication-manager>
+        <authentication-provider>
+        <jdbc-user-service 
+            data-source-ref="dataSource"
+            role-prefix=""
+            users-by-username-query="select username, password, enabled from users where username = ?"
+            authorities-by-username-query="select username, authority from authorities where username = ?"
+            group-authorities-by-username-query="select g.id, g.group_name, 
+            ga.authority from groups g, group_members gm, group_authorities ga where
+             gm.username = ? and g.id = ga.group_id and g.id = gm.group_id"
+        />
+        </authentication-provider>
+    </authentication-manager>
+   
+	
+	
+	
+</beans:beans>
+
+
+
+

@@ -36,7 +36,6 @@
 	<sec:authorize access="isAuthenticated()">
 <%
 
-
 User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 if(user!=null){
@@ -50,6 +49,12 @@ if(user!=null){
 
 </sec:authorize>
 
+<c:if test="${ not empty userVO }">
+<br>
+<h2>로그인한  정보 DB에서 개별 상세 정보 가져오기</h2>
+${userVO.toString() }
+
+</c:if>
 
 
 </body>

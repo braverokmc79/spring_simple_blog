@@ -1,8 +1,8 @@
 package net.macaronics.web.controller;
 
 
+import java.security.Principal;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -21,7 +24,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import config.paging.PageMaker;
 import config.paging.PageMakerAndSearch;
 import config.paging.oracle.OraclePageMakerAndSearch;
-import net.macaronics.web.domain.MemberVO;
 import net.macaronics.web.domain.ProductVO;
 import net.macaronics.web.service.MemberService;
 
@@ -186,7 +188,18 @@ public class SampleController {
 	
 	
 	
-	
+	@GetMapping("username")
+	@ResponseBody
+	public String currentUserName(Principal principal) {
+		return principal.getName();
+	}
+
+	@GetMapping("/username2")
+	@ResponseBody
+	public String currentUserName(Authentication  authenticate) {
+		UserDetails userDetails =(UserDetails)authenticate.getPrincipal();
+		return userDetails.getUsername();
+	}
 	
 	
 }

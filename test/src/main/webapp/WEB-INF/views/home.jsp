@@ -7,9 +7,7 @@
 <%@ page session="false"%>
 
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
-
+<%@ taglib prefix="sec"  uri="http://www.springframework.org/security/tags"%>
 <html>
 <head>
 <title>Home</title>
@@ -42,8 +40,6 @@ if(user!=null){
 	System.out.println("username = " + user.toString());	
 	out.write(user.getUsername());
 }
-
-
 
 %>
 

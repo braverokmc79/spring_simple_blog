@@ -56,6 +56,7 @@
 		<intercept-url pattern="/login" access="hasRole('USER')" />
 		<intercept-url pattern="/" access="permitAll"/>
 		<intercept-url pattern="/user/**" access="hasAnyRole('USER, ADMIN')" />
+		<intercept-url pattern="/passwordEncoderTest" access="permitAll"/>
 		
 		<form-login login-page="/login/loginForm.do" 
 					default-target-url="/"
@@ -67,10 +68,14 @@
 				logout-success-url="/" />
 		<access-denied-handler error-page="/login/accessDenied.do"/>			
 	</http>
+	  
+	  
+	 <beans:bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 	    
     <!--  provider  -->
     <authentication-manager>
-        <authentication-provider>
+        <authentication-provider >
+        <password-encoder hash="bcrypt" />
         <jdbc-user-service 
             data-source-ref="dataSource"
             role-prefix=""

@@ -50,7 +50,8 @@
  -->
 	<!-- 검사 URL -->
 	<http use-expressions="true">
-		<intercept-url pattern="/sample/**" access="permitAll"/>	
+		<intercept-url pattern="/sample/**" access="permitAll"/>
+		<intercept-url pattern="/ajaxTest/**" access="permitAll"/>	
 		<intercept-url pattern="/login/loginForm.do" access="permitAll"/>  	
 		<intercept-url pattern="/admin/**" access="hasRole('ADMIN')"/> 
 		<intercept-url pattern="/login" access="hasRole('USER')" />
@@ -62,15 +63,17 @@
 					default-target-url="/"
 					authentication-failure-url="/login/loginForm.do?error"
 					username-parameter="id"
-					password-parameter="password"	
-		/>		
+					password-parameter="password" />		
+
 		<logout logout-url="/logout"    
 				logout-success-url="/" />
-		<access-denied-handler error-page="/login/accessDenied.do"/>			
+				
+		<access-denied-handler error-page="/login/accessDenied.do"/>	
+		<remember-me key="REMEMBER_ME_KEY"/>		
 	</http>
+
 	  
-	  
-	 <beans:bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+	<beans:bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 	    
     <!--  provider  -->
     <authentication-manager>

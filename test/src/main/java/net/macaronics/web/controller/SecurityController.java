@@ -65,8 +65,8 @@ public class SecurityController {
 		return "home";
 	}
 	
-	@RequestMapping(value="passwordEncoderTest")
-	public String passwordEncoder(@RequestParam(value="inputPassword", required=false, defaultValue="") String inputPassword,
+      @RequestMapping(value="passwordEncoderTest")
+      public String passwordEncoder(@RequestParam(value="inputPassword", required=false, defaultValue="") String inputPassword,
 			Model model){
 		
 		if(StringUtils.hasText(inputPassword)){
@@ -80,6 +80,7 @@ public class SecurityController {
 	}
 	
 
+      
 }
 
 

@@ -51,16 +51,18 @@
 		/> </beans:bean> -->
 
 	<!-- PC 서버의 파일 저장 경로 설정 -->
-<!-- 	<beans:bean id="uploadPath" class="java.lang.String">
+	<!-- 	<beans:bean id="uploadPath" class="java.lang.String">
 		<beans:constructor-arg
 			value="G:\dev\spring_simple_blog\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\upload" />
 	</beans:bean>
 	 -->
+	 
 	<!-- 노트북 서버의 파일 저장 경로 설정 -->
 	<beans:bean id="uploadPath" class="java.lang.String">
-		<beans:constructor-arg
-			value="K:\dev\spring_simple_blog\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\upload" />
+		<beans:constructor-arg value="K:\dev\spring_simple_blog\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\upload" />
 	</beans:bean>
 	
 	
 </beans:beans>
+
+

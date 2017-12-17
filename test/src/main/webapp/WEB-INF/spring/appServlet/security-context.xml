@@ -76,7 +76,7 @@
 	<beans:bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 	    
     <!--  provider  -->
-    <authentication-manager>
+    <authentication-manager >
         <authentication-provider >
         <password-encoder hash="bcrypt" />
         <jdbc-user-service 

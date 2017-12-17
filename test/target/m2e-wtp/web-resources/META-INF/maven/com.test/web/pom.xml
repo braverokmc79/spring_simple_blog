@@ -24,16 +24,8 @@
 	</repositories>
 
 
-<!--   
-	2번째 오라클 연결 방법
-	  <repositories>
-        <repository>
-            <id>oracle</id>
-            <url>http://maven.jahia.org/maven2</url>
-        </repository>
-    </repositories>
-
- -->
+	<!-- 2번째 오라클 연결 방법 <repositories> <repository> <id>oracle</id> <url>http://maven.jahia.org/maven2</url> 
+		</repository> </repositories> -->
 
 	<dependencies>
 		<!-- Spring -->
@@ -290,15 +282,20 @@
 			<artifactId>spring-security-config</artifactId>
 			<version>4.2.1.RELEASE</version>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-taglibs</artifactId>
 			<version>4.2.1.RELEASE</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>4.2.1.RELEASE</version>
+		</dependency>
 
-
-
+	
 
 	</dependencies>
 	<build>

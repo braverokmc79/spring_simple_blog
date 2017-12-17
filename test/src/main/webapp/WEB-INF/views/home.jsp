@@ -12,6 +12,8 @@
 <head>
 <title>Home</title>
 </head>
+
+
 <body>
 	<h1>Home!</h1>
 	<sec:authorize access="isAnonymous()">
@@ -30,8 +32,8 @@
 			href="<c:url value="/admin/adminHome.do" />">관리자 홈</a>]
 	</h3>
 	
-		
-	<sec:authorize access="isAuthenticated()">
+
+<sec:authorize access="isAuthenticated()">
 <%
 
 User user = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();

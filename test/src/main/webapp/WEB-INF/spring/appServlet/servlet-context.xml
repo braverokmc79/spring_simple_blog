@@ -38,7 +38,8 @@
 	<context:component-scan base-package="config/error" /> <!-- 에러처리 -->
 	<context:component-scan base-package="config/aop" /> <!-- aop 처리 -->
 	<context:component-scan base-package="test.*" />
-	<context:component-scan base-package="config.upload" />
+	<context:component-scan base-package="config/upload" />
+	<context:component-scan base-package="config/security" />
 
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
@@ -51,7 +52,7 @@
 		/> </beans:bean> -->
 
 	<!-- PC 서버의 파일 저장 경로 설정 -->
-	<!-- 	<beans:bean id="uploadPath" class="java.lang.String">
+	<!-- <beans:bean id="uploadPath" class="java.lang.String">
 		<beans:constructor-arg
 			value="G:\dev\spring_simple_blog\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\upload" />
 	</beans:bean>

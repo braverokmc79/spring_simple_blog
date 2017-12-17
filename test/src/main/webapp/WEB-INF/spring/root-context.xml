@@ -14,9 +14,9 @@
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
-   <!--  	<context:property-placeholder location="classpath:/config/mysql-config.properties" /> -->
+   	 <!-- <context:property-placeholder location="classpath:/config/mysql-config.properties" />  --> 
      <!-- <context:property-placeholder location="classpath:/config/oralce-config.properties" />  -->
- <context:property-placeholder location="classpath:/config/note-mysql-config.properties" />   
+  <context:property-placeholder location="classpath:/config/note-mysql-config.properties" /> 
 
 	<!-- <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource"> 
 		<property name="driverClassName" value="net.sf.log4jdbc.sql.jdbcapi.DriverSpy" 
@@ -24,8 +24,7 @@
 		/> <property name="username" value="simpleblog" /> <property name="password" 
 		value="1111" /> </bean> -->
 
-	<bean id="dataSource"
-		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="${db.driver}" />
 		<property name="url" value="${db.jdbcUrl}" />
 		<property name="username" value="${db.user}" />
@@ -49,9 +48,6 @@
 	</bean>	
 	<tx:annotation-driven/>
   
-   
-   
   
-
 
 </beans>

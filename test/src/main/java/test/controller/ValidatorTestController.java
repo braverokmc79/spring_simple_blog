@@ -36,13 +36,13 @@ public class ValidatorTestController {
 	private MemberService memberService;
 	
 	@RequestMapping(value="/validTestform", method=RequestMethod.GET)
-	public String validTestForm(MemberVO memberVO ) throws Exception{
+	public String validTestForm(@ModelAttribute(name="vo") MemberVO memberVO ) throws Exception{
 		
 		return "test/validMember";
 	}
 	
 	
-	//bindResult 다음에 Model 이 와야 한다. 순서가 틀리면 에러간 발생한다.
+	//bindResult 다음에 Model 이 와야 한다. 순서가 틀리면 에러가 발생한다.
 	@RequestMapping(value="/validTestform", method=RequestMethod.POST)
 	public String validTestAction(@ModelAttribute(name="vo") @Valid MemberVO vo,  BindingResult  bindResult, Model model) throws Exception{
 	

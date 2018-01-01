@@ -57,6 +57,7 @@
 		<intercept-url pattern="/login" access="hasRole('USER')" />
 		<intercept-url pattern="/" access="permitAll"/>
 		<intercept-url pattern="/user/**" access="hasAnyRole('USER, ADMIN')" />
+		<intercept-url pattern="/member/**" access="permitAll" />
 		<intercept-url pattern="/passwordEncoderTest" access="permitAll"/>
 		
 		<form-login login-page="/login/loginForm.do" 

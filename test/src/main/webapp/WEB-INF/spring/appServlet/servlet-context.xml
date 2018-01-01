@@ -40,6 +40,7 @@
 	<context:component-scan base-package="test.*" />
 	<context:component-scan base-package="config/upload" />
 	<context:component-scan base-package="config/security" />
+	<context:component-scan base-package="net.macaronics.join.*"/>
 
 	<beans:bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">

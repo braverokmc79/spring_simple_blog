@@ -30,6 +30,7 @@
 	<h3>
 		[<a href="<c:url value="/user/introduction.do" />">소개 페이지</a>] [<a
 			href="<c:url value="/admin/adminHome.do" />">관리자 홈</a>]
+		[ <a href="<c:url value="/member/joinForm.do" />">회원 가입</a>]	
 	</h3>
 	
 
